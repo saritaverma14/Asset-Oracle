@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="adeca221f75f4d2ca79554b9c7337c4a" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="Model.LOGIN" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.SV_SERVICEDETAILS" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.SV_SOAPSERVICE" Width="1.5" PointX="0.75" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

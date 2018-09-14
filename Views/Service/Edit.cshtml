@@ -1,0 +1,450 @@
+﻿@model Asset_Oracle.Models.SV_SERVICEDETAILS
+
+@{
+    ViewBag.Title = "Update Record";
+}
+<style>
+    .modalDialog {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 99999;
+        opacity: 0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+
+        .modalDialog:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modalDialog > div {
+            width: 900px;
+            height: auto;
+            position: relative;
+            margin: 10% auto;
+            padding: 5px 20px 13px 20px;
+            border-radius: 10px;
+            background: #fff;
+            background: -moz-linear-gradient(#fff, #999);
+            background: -webkit-linear-gradient(#fff, #999);
+            background: -o-linear-gradient(#fff, #999);
+        }
+
+    .close {
+        background: #606061;
+        color: #FFFFFF;
+        line-height: 25px;
+        position: absolute;
+        right: -12px;
+        text-align: center;
+        top: -10px;
+        width: 24px;
+        text-decoration: none;
+        font-weight: bold;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        -moz-box-shadow: 1px 1px 3px #000;
+        -webkit-box-shadow: 1px 1px 3px #000;
+        box-shadow: 1px 1px 3px #000;
+    }
+
+        .close:hover {
+            background: #00d9ff;
+        }
+</style>
+<a class="acn-logo" title="Accenture" data-rel="856d2796-13ab-4036-9c60-87b846b6dea1" data-name="asset" data-linktype="navigationsettings:logo" tabindex="0">
+    <img src="//www.accenture.com/t20171113T020841Z__w__/us-en/_acnmedia/Accenture/Dev/ComponentImages/logo-accenture.svg" alt="Accenture" style="text-align:right;" />
+</a>
+<h3 style="text-align:center;"><b>Service Virtualization – Test Data Management Portal</b></h3>
+
+<hr />
+
+@using (Html.BeginForm("Edit", "Service", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container ">
+        @Html.ValidationSummary(true)
+        <div class="form-group row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("Program", new { @class = " col-md-3" })
+                        <div class="col-lg-8">
+                            @Html.DropDownList("PROGRAM", (IEnumerable<SelectListItem>)ViewData["DBMyProgram"], "Select Program", new { id = "ddlProgram", @class = "form-control", @title = "SV Mobilization", @name = "Program" })
+                            @Html.ValidationMessageFor(model => model.PROGRAM, string.Empty, new { @class = "error-message", @style = "color: red" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("Project", new { @class = " col-md-3" })
+                        <div class="col-lg-8">
+                            @Html.DropDownList("PROJECT", (IEnumerable<SelectListItem>)ViewData["DBMyProject"], "Select Project", new { id = "ddlProject", @class = "form-control", @title = "Inventory", @name = "Project" })
+                            @Html.ValidationMessageFor(model => model.PROJECT, string.Empty, new { @class = "error-message", @style = "color: red" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("Release", new { @class = " col-md-3" })
+                        <div class="col-lg-8">
+                            @Html.DropDownList("RELEASE", (IEnumerable<SelectListItem>)ViewData["DBMyRelease"], "Select Release", new { id = "ddlRelease", @class = "form-control", @title = "01.2018", @name = "Release" })
+                            @Html.ValidationMessageFor(model => model.RELEASE, string.Empty, new { @class = "error-message", @style = "color: red" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("API Operation", new { @class = " col-md-3" })
+                        <div class="col-lg-8">
+                            @Html.DropDownList("APIOPERATION", (IEnumerable<SelectListItem>)ViewData["DBMyApi"], "Select API Operation", new { id = "ddlApiOperation", @class = "form-control", @title = "GET /cars-inventory/carInventory/1Z1CB51D25l454473", @name = "ApiOperation" })
+                            @Html.ValidationMessageFor(model => model.APIOPERATION, string.Empty, new { @class = "error-message", @style = "color: red" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("Sprint", new { @class = " col-md-3" })
+                        <div class="col-lg-8">
+                            @Html.DropDownList("SPRINT", (IEnumerable<SelectListItem>)ViewData["DBMySprint"], "Select Sprint", new { id = "ddlSprint", @class = "form-control", @title = "Sprint-1", @name = "Sprint" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("Last Modified On", new { @class = " col-md-3", @title = "2/8/2018 12:08:51 PM" })
+                        <div class="col-lg-8">
+                            @*&nbsp; &nbsp; &nbsp; &nbsp; @Html.Raw(System.DateTime.Now)*@
+                            @*@Html.Raw(System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffffff").ToString())*@
+                            @Html.DisplayTextFor(model => model.LASTMODIFIEDDATE) 
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("Created Date", new { @class = " col-md-2", @title = "2/8/2018 12:08:51 PM" })
+                        <div class="col-lg-8">
+                            &nbsp; &nbsp; &nbsp; &nbsp;    &nbsp; &nbsp; &nbsp; &nbsp; @Html.DisplayTextFor(Model => Model.CREATEDDATE)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("Number Of Modifictions", new { @class = " col-md-2", @title = "Modification Count" })
+                        <div class="col-lg-8">
+                            &nbsp; &nbsp; &nbsp; &nbsp;    &nbsp; &nbsp; &nbsp; &nbsp;@Html.DisplayTextFor(Model => Model.NUMOFMODIFICATIONS)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("Request", new { @class = " col-md-3" })
+                        <div class="col-lg-8">
+                            @Html.TextAreaFor(model => model.REQUEST, new { @placeholder = "Enter Request", @class = "form-control col-lg-6 ", @title = "{result: true,count: 42} JSON Data", style = "width:1200px; height:200px;" })
+
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-lg-8"><p style="color: red">@TempData["ErrorRequest"]</p></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("Response", new { @class = " col-md-3" })
+                        <div class="col-lg-8">
+                            @Html.TextAreaFor(model => model.RESPONSE, new { @placeholder = "Enter Response", @title = "{result: true,count: 42} JSON Data", style = "width:1200px; height:200px;" })
+                            <p style="color: red">@TempData["ErrorResponse"]</p>@Html.ValidationMessageFor(model => model.RESPONSE, string.Empty, new { @class = "error-message", @style = "color: red" })
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("Live Server", new { @class = " col-md-3" })
+                        <div class="col-lg-8">
+                            @Html.TextBoxFor(model => model.LIVESERVER, new { @placeholder = "Enter Live Server", @title = "10.0.3.238", @class = "form-control " })
+                            @Html.ValidationMessageFor(model => model.LIVESERVER, string.Empty, new { @class = "error-message", @style = "color: red" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div style="width: 100%; float: left;">
+                        @Html.Label("Live Port", new { @class = " col-md-3" })
+                        <div class="col-lg-8">
+                            @Html.TextBoxFor(model => model.LIVEPORT, new { @placeholder = "Enter LiveURL", @title = "3500", @class = "form-control " })
+                            @Html.ValidationMessageFor(model => model.LIVEPORT, string.Empty, new { @class = "error-message", @style = "color: red" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <br />
+
+        <a href="#Argument" class="text-center" data-toggle="modalDialog" data-target="#Argument"><h4 style="text-align:center">Argument Configurations</h4></a>
+        <div id="Argument" class="modalDialog" data-target="#Argument ">
+            <div class="modal-header" style="overflow-y: scroll; max-height:50%;  margin-top: 50px; margin-bottom:50px;">
+
+                <u><h4 class="modal-title" id="exampleModalLongTitle">Example of Header Argument Configurations : </h4></u>
+
+                <br />
+                <div class="modal-body text-right">
+                    <div class="text-left">
+                        Argument configuration
+
+                    </div>
+                    <h4 style="text-align:right;">
+                        <a href="#close" title="Close" class="jtable-close-button">
+                            <button type="button" class="btn btn-primary" style="background-color:blue;" data-dismiss="modal">
+                                Close
+                            </button>
+                        </a>
+                    </h4>
+                </div>
+
+            </div>
+
+        </div>
+        <hr />
+        <div class="form-group row">
+
+
+            <div class="col-lg-5">
+                @Html.Label("Argument-1", new { @class = " col-md-3" })
+
+                @Html.TextBoxFor(model => model.ARGUMENT1, string.Empty, new { @placeholder = "Enter Argument 1", @title = "/o/carTrim/text()", @class = "form-control " })
+            </div>
+
+            <div class="col-lg-1">
+                <b> =</b>
+            </div>
+            <div class="col-lg-6">
+                @Html.Label("Argument Value1", new { @class = " col-md-3" })
+                @Html.TextBoxFor(model => model.ARGUMENTVALUE1, string.Empty, new { @placeholder = "Enter Argument Value 1", @title = "/o/carTrim/text()", @class = "form-control  " })
+            </div>
+
+
+        </div>
+        <div class="form-group row">
+
+
+            <div class="col-lg-5">
+                @Html.Label("Argument-2", new { @class = " col-md-3" })
+
+                @Html.TextBoxFor(model => model.ARGUMENT2, string.Empty, new { @placeholder = "Enter Argument 2", @title = "/o/carTrim/text()", @class = "form-control " })
+            </div>
+
+            <div class="col-lg-1">
+                <b> =</b>
+            </div>
+            <div class="col-lg-6">
+                @Html.Label("Argument Value 2", new { @class = " col-md-3" })
+                @Html.TextBoxFor(model => model.ARGUMENTVALUE2, string.Empty, new { @placeholder = "Enter Argument Value 2", @title = "/o/carTrim/text()", @class = "form-control  " })
+            </div>
+
+
+        </div>
+
+        <div class="form-group row">
+
+
+            <div class="col-lg-5">
+                @Html.Label("Argument-3", new { @class = " col-md-3" })
+
+                @Html.TextBoxFor(model => model.ARGUMENT3, string.Empty, new { @placeholder = "Enter Argument 3", @title = "/o/carTrim/text()", @class = "form-control col-lg-6 " })
+            </div>
+
+            <div class="col-lg-1">
+                <b> =</b>
+            </div>
+            <div class="col-lg-6">
+                @Html.Label("Argument Value 3", new { @class = " col-md-3" })
+                @Html.TextBoxFor(model => model.ARGUMENTVALUE3, string.Empty, new { @placeholder = "Enter Argument Value 3", @title = "/o/carTrim/text()", @class = "form-control  " })
+            </div>
+
+
+        </div>
+       
+        <br />
+        <br />
+        <h4 style="text-align:center">Header Configurations</h4>
+        <hr />
+
+        <div class="form-group row">
+
+
+            <div class="col-lg-5">
+                @Html.Label("Request Header1", new { @class = " col-md-3" })
+
+                @Html.TextBoxFor(model => model.REQUESTHEADER1, string.Empty, new { @placeholder = "Enter Request Header 1", @title = "color", @class = "form-control " })
+                @Html.ValidationMessageFor(model => model.REQUESTHEADER1, string.Empty, new { @class = "error-message", @style = "color: red" })
+            </div>
+
+            <div class="col-lg-1">
+                <b> =</b>
+            </div>
+            <div class="col-lg-6">
+                @Html.Label("Request Header Value1", new { @class = " col-md-3" })
+                @Html.TextBoxFor(model => model.REQUESTHEADERVALUE1, new { @placeholder = "Enter Request Header Value1 ", @title = "3fea0d50-8d6b-11e7-a287-0e9b9395cb98", @class = "form-control  " })
+                @Html.ValidationMessageFor(model => model.REQUESTHEADERVALUE1, string.Empty, new { @class = "error-message", @style = "color: red" })
+            </div>
+
+
+        </div>
+        <div class="form-group row">
+
+
+            <div class="col-lg-5">
+                @Html.Label("Request Header2", new { @class = " col-md-3" })
+
+                @Html.TextBoxFor(model => model.REQUESTHEADER2, string.Empty, new { @placeholder = "Enter Request Header 2", @title = "color", @class = "form-control " })
+                @Html.ValidationMessageFor(model => model.REQUESTHEADER2, string.Empty, new { @class = "error-message", @style = "color: red" })
+            </div>
+
+            <div class="col-lg-1">
+                <b> =</b>
+            </div>
+            <div class="col-lg-6">
+                @Html.Label("Request Header Value2", new { @class = " col-md-3" })
+                @Html.TextAreaFor(model => model.REQUESTHEADERVALUE2, new { @placeholder = "Enter Request Header Value 2", @title = "rO0ABXNyACNvcmcubXVsZS5zZXNzaW9uLkRlZmF1bHRNdWxlU2Vzc2lvbi7rdtEW7GGKAwAFWgAFdmFsaWRMAA1mbG93Q29uc3RydWN0dAAmTG9yZy9tdWxlL2FwaS9jb25zdHJ1Y3QvRmxvd0NvbnN0cnVjdDtMAAJpZHQAEkxqYXZhL2xhbmcvU3RyaW5nO0wACnByb3BlcnRpZXN0AA9MamF2YS91dGlsL01hcDtMAA9zZWN1cml0eUNvbnRleHR0ACdMb3JnL211bGUvYXBpL3NlY3VyaXR5L1NlY3VyaXR5Q29udGV4dDt4cAFwdAAkM2ZlYTBkNTEtOGQ2Yi0xMWU3LWEyODctMGU5YjkzOTVjYjk4c3IAJWphdmEudXRpbC5Db2xsZWN0aW9ucyRTeW5jaHJvbml6ZWRNYXAbc/kJS0s5ewMAAkwAAW1xAH4AA0wABW11dGV4dAASTGphdmEvbGFuZy9PYmplY3Q7eHBzcgAkb3JnLm11bGUudXRpbC5DYXNlSW5zZW5zaXRpdmVIYXNoTWFwndHZ72dFzgADAAB4cHcMP0AAAAAAABAAAAAAeHEAfgAJeHB4", @class = "form-control ", @style = "width:1200px; height:200px;" })
+                &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; @Html.ValidationMessageFor(model => model.REQUESTHEADERVALUE2, string.Empty, new { @class = "error-message", @style = "color: red" })
+            </div>
+
+
+        </div>
+        <div class="form-group row">
+
+
+            <div class="col-lg-5">
+                @Html.Label("Request Header3", new { @class = " col-md-3" })
+
+                @Html.TextBoxFor(model => model.REQUESTHEADER3, string.Empty, new { @placeholder = "Enter Request Header 3", @title = "color", @class = "form-control " })
+                @Html.ValidationMessageFor(model => model.REQUESTHEADER3, string.Empty, new { @class = "error-message", @style = "color: red" })
+            </div>
+
+            <div class="col-lg-1">
+                <b> =</b>
+            </div>
+            <div class="col-lg-6">
+                @Html.Label("Request Header Value3", new { @class = " col-md-3" })
+                @Html.TextBoxFor(model => model.REQUESTHEADERVALUE3, string.Empty, new { @placeholder = "Enter Request Header value 3", @title = "color", @class = "form-control  " })
+                @Html.ValidationMessageFor(model => model.REQUESTHEADERVALUE3, string.Empty, new { @class = "error-message", @style = "color: red" })
+            </div>
+
+
+        </div>
+
+        <div class="form-group row">
+
+
+            <div class="col-lg-5">
+                @Html.Label("Response Header1", new { @class = " col-md-3" })
+
+                @Html.TextBoxFor(model => model.RESPONSEHEADER1, string.Empty, new { @placeholder = "Enter Response Header 1", @title = "HTTP-Response-Code", @class = "form-control col-lg-6 " })
+            </div>
+
+            <div class="col-lg-1">
+                <b> =</b>
+            </div>
+            <div class="col-lg-6">
+                @Html.Label("Response Header Value1", new { @class = " col-md-3" })
+                @Html.TextBoxFor(model => model.RESPONSEHEADERVALUE1, string.Empty, new { @placeholder = "Enter Response Header Value 1", @title = "color", @class = "form-control  " })
+            </div>
+
+
+        </div>
+        <div class="form-group row">
+
+
+            <div class="col-lg-5">
+                @Html.Label("Response Header2", new { @class = " col-md-3" })
+
+                @Html.TextBoxFor(model => model.RESPONSEHEADER2, string.Empty, new { @placeholder = "Enter Response Header 2", @title = "color", @class = "form-control " })
+            </div>
+
+            <div class="col-lg-1">
+                <b> =</b>
+            </div>
+            <div class="col-lg-6">
+                @Html.Label("Response Header Value2", new { @class = " col-md-3" })
+                @Html.TextBoxFor(model => model.RESPONSEHEADERVALUE2, string.Empty, new { @placeholder = "Enter Response Header Value 2", @title = "color", @class = "form-control  " })
+            </div>
+
+
+        </div>
+
+
+
+        <br />
+        <br />
+        <div class="row" style="text-align:center;">
+            <input type="submit" class="btn btn-primary text-right" value="Update" style="text-align:center;width:150px;" />
+        </div>
+
+    </div>
+
+}
+@Html.Raw(TempData["msg"])
+@Html.Raw(TempData["Empty"])
+
+
+<div class="row" style="text-align:right;">
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

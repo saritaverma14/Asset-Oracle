@@ -1,0 +1,225 @@
+﻿@model IEnumerable<Asset_Oracle.Models.SV_SERVICEDETAILS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PROGRAM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROJECT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RELEASE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.APIOPERATION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SPRINT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CREATEDDATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LASTMODIFIEDDATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.REQUEST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RESPONSE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ARGUMENT1)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.ARGUMENT2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ARGUMENTVALUE2)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.ARGUMENTVALUE3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ARGUMENT4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ARGUMENTVALUE4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ARGUMENT5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ARGUMENTVALUE5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.REQUESTHEADER1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.REQUESTHEADERVALUE1)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.REQUESTHEADERVALUE2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RESPONSEHEADER1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RESPONSEHEADERVALUE1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RESPONSEHEADER2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RESPONSEHEADERVALUE2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RESPONSEHEADER3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RESPONSEHEADERVALUE3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LIVESERVER)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.METHOD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LASTMODIFIEDBY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USERID)
+        </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROGRAM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROJECT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RELEASE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.APIOPERATION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SPRINT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CREATEDDATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LASTMODIFIEDDATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.REQUEST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RESPONSE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ARGUMENT1)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.ARGUMENT2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ARGUMENTVALUE2)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.ARGUMENTVALUE3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ARGUMENT4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ARGUMENTVALUE4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ARGUMENT5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ARGUMENTVALUE5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.REQUESTHEADER1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.REQUESTHEADERVALUE1)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.REQUESRHEADER2)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.REQUESTHEADERVALUE2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RESPONSEHEADER1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RESPONSEHEADERVALUE1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RESPONSEHEADER2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RESPONSEHEADERVALUE2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.REQUESTHEADER3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.REQUESTHEADERVALUE3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LIVESERVER)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.METHOD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.URI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LASTMODIFIEDBY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USERID)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

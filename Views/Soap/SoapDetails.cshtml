@@ -1,0 +1,175 @@
+﻿@model Asset_Oracle.Models.SV_SERVICEDETAILS
+
+@{
+    ViewBag.Title = "View Details";
+}
+<a class="acn-logo" title="Accenture" data-rel="856d2796-13ab-4036-9c60-87b846b6dea1" data-name="asset" data-linktype="navigationsettings:logo" tabindex="0">
+    <img src="//www.accenture.com/t20171113T020841Z__w__/us-en/_acnmedia/Accenture/Dev/ComponentImages/logo-accenture.svg" alt="Accenture" style="text-align:right;" />
+</a>
+<h3 style="text-align:center;"><b>Service Virtualization – Test Data Management Portal</b></h3>
+
+<hr />
+
+
+@Html.AntiForgeryToken()
+
+<div class="container ">
+    @Html.ValidationSummary(true)
+
+    <div class="form-group row">
+        <div class="col-lg-5">
+            @Html.Label("Program", new { @class = " col-md-5" })
+            @Html.DisplayTextFor(model => model.PROGRAM)
+        </div>
+        <div class="col-lg-1">
+            <b> </b>
+        </div>
+        <div class="col-lg-6">
+            @Html.Label("Project", new { @class = " col-md-5" })
+            @Html.DisplayTextFor(model => model.PROJECT)
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <div class="col-lg-5">
+            @Html.Label("Release", new { @class = " col-md-5" })
+            @Html.DisplayTextFor(model => model.RELEASE)
+        </div>
+        <div class="col-lg-1">
+            <b> </b>
+        </div>
+        <div class="col-lg-6">
+            @Html.Label("Operation", new { @class = " col-md-5" })
+            @Html.DisplayTextFor(model => model.OPERATION)
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-lg-5">
+            @Html.Label("Sprint", new { @class = " col-md-5" })
+            @Html.DisplayTextFor(model => model.SPRINT)
+        </div>
+        <div class="col-lg-1">
+            <b> </b>
+        </div>
+        <div class="col-lg-6">
+            @Html.Label("Number Of Modifictions", new { @class = " col-md-5" })
+            @Model.NUMOFMODIFICATIONS
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-lg-5">
+            @Html.Label("Created By", new { @class = " col-md-5" })
+            @Model.USERID
+        </div>
+        <div class="col-lg-1">
+            <b> </b>
+        </div>
+        <div class="col-lg-6">
+            @Html.Label("Created Date", new { @class = " col-md-5" })
+            @Model.CREATEDDATE
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-lg-5">
+            @Html.Label("Last Modified By", new { @class = " col-md-5" })
+            @Html.DisplayTextFor(model => model.LASTMODIFIEDBY)
+        </div>
+        <div class="col-lg-1">
+            <b> </b>
+        </div>
+        <div class="col-lg-6">
+            @Html.Label("Last Modified Date", new { @class = " col-md-5" })
+            @Model.LASTMODIFIEDDATE
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-lg-6">
+            @Html.Label("Request", new { @class = " col-md-4" })
+            @Html.TextAreaFor(model => model.REQUEST, new { @placeholder = "Enter Request", @class = "form-control col-lg-8 ", style = "width:1200px; height:200px;" })
+        </div>
+
+        <div class="col-lg-6">
+            @Html.Label("Response", new { @class = " col-md-4" })
+            @Html.TextAreaFor(model => model.RESPONSE, new { @placeholder = "Enter Response", @class = "form-control col-lg-8 ", style = "width:1200px; height:200px;" })
+        </div>
+    </div>
+    <br />
+
+    <h4 style="text-align:center">Argument Configurations</h4>
+    <hr />
+
+    <div class="form-group row">
+        <div class="col-lg-5">
+            @Html.Label("Argument 1", new { @class = " col-md-5" })
+            @Html.DisplayTextFor(model => model.ARGUMENT1)
+        </div>
+        <div class="col-lg-1">
+            <b> =</b>
+        </div>
+        <div class="col-lg-6">
+            @Html.Label("Argument Value 1", new { @class = " col-md-5" })
+            @Html.DisplayTextFor(model => model.ARGUMENTVALUE1)
+        </div>
+    </div>
+    <div class="form-group row">
+
+
+        <div class="col-lg-5">
+            @Html.Label("Argument 2", new { @class = " col-md-5" })
+
+            @Html.DisplayTextFor(model => model.ARGUMENT2)
+        </div>
+
+        <div class="col-lg-1">
+            <b> =</b>
+        </div>
+        <div class="col-lg-6">
+            @Html.Label("Argument Value 2", new { @class = " col-md-5" })
+            @Html.DisplayTextFor(model => model.ARGUMENTVALUE2)
+        </div>
+
+
+    </div>
+    <div class="form-group row">
+
+
+        <div class="col-lg-5">
+            @Html.Label("Argument 3", new { @class = " col-md-5" })
+
+            @Html.DisplayTextFor(model => model.ARGUMENT3)
+        </div>
+
+        <div class="col-lg-1">
+            <b> =</b>
+        </div>
+        <div class="col-lg-6">
+            @Html.Label("Argument Value 3", new { @class = " col-md-5" })
+            @Html.DisplayTextFor(model => model.ARGUMENTVALUE3)
+        </div>
+
+
+    </div>
+
+
+    <br />
+
+
+
+
+</div>
+
+
+
+<div class="row" style="text-align:right;">
+    @Html.ActionLink("Back to List", "SoapIndex")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JSONEditor | Basic usage</title>
+    <link href="~/dist/jsoneditor.css" rel="stylesheet" type="text/css" />
+    <script src="~/dist/jsoneditor.js"></script>
+    <style type="text/css">
+        .one {
+            width: 15%;
+            height: 400px;
+            float: left;
+            /*border: 1px solid #3883fa;*/
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            position: relative;
+            padding: 0;
+            line-height: 100%;
+        }
+
+        .two {
+            margin-left: 35%;
+            width: 500px;
+            height: 400px;
+            /* background: black; */
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <br />
+    <section class="container">
+        <p>
+            <button id="setJSON" class="btn-primary">Set JSON</button>
+            <button id="getJSON" class="btn-primary">Get JSON</button>
+        </p>
+        <div class="one" id="jsoneditor1">
+            <textarea id="localtext" rows="30" cols="100"style="width:1000px;" class="text-danger"></textarea>
+        </div>
+        <div class="two" id="jsoneditor"></div>
+    </section>
+    <script>
+        // create the editor
+        var container = document.getElementById('jsoneditor');
+        var options = {};
+        var editor = new JSONEditor(container, options);
+        // set json
+        document.getElementById('setJSON').onclick = function () {
+            var inputJsonData = {};
+            inputJsonData = JSON.parse(document.getElementById('localtext').value);
+            console.log(inputJsonData);
+            editor.set(inputJsonData);
+        };
+        // get json
+        document.getElementById('getJSON').onclick = function () {
+            var json = editor.get();
+            alert(JSON.stringify(json, null, 2));
+        };
+    </script>
+</body>
+
+
+</html>

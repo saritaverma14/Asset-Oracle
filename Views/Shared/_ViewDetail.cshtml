@@ -1,0 +1,297 @@
+﻿@model PagedList.IPagedList<Asset_Oracle.Models.SV_SERVICEDETAILS>
+@using PagedList.Mvc;
+<script src="~/Scripts/ProjectScript.js"></script>
+
+@using (Html.BeginForm("Service", "Index", FormMethod.Post))
+{
+
+    if (Convert.ToString(Session["Role"]) == "Admin")
+    {
+        <br />
+        <div style="text-align:right;" class="col-lg-12">
+
+            <b> @Html.ActionLink("Add Rest Record", "Create")</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <input type="submit" class="btn btn-primary" value="Copy" id="Copy" oncancel="window.opener.location.reload();" />
+
+        </div>
+
+        <br />
+   
+    <table class="table-striped table table-hover table-bordered ">
+        
+        <tr>
+            <th style="text-align: left; background-color: green; font-weight: 200; ">
+                <u> @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:white" })</u>
+            </th>
+            <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                <u> @Html.ActionLink("Program", "Index", new { sortOrder = ViewBag.Program, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:white" })</u>
+            </th>
+            <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                <u> @Html.ActionLink("Project", "Index", new { sortOrder = ViewBag.Project, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:white" })</u>
+            </th>
+            <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                <u> @Html.ActionLink("Release", "Index", new { sortOrder = ViewBag.Release, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:white" })</u>
+            </th>
+            <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                <u> @Html.ActionLink("Sprint", "Index", new { sortOrder = ViewBag.Sprint, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:white" })</u>
+            </th>
+            <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                <u>  @Html.ActionLink("API Operation", "Index", new { sortOrder = ViewBag.ApiOperation }, new { @style = "color:white" })</u>
+            </th>
+            <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                Request
+            </th>
+
+            <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                Response
+            </th>
+            <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                <u>  @Html.ActionLink("Last Modified On", "Index", new { sortOrder = ViewBag.DateSortParm }, new { @style = "color:white" })</u>
+            </th>
+            <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                Action
+            </th>
+            <th style=" text-align: left; background-color: green; color: white; font-weight: 200;  ">
+                <input type='checkbox' name='showhide' onchange="checkAll(this)">
+            </th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="9">
+                    <b style="color:red;"> Now Rows match search criteria</b>
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="~/Service/Details/@item.ID" style="width:68px;">@item.ID</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PROGRAM, new { @style = "text-align:left" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PROJECT, new { @style = "text-align:left" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RELEASE, new { @style = "text-align:left" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SPRINT, new { @style = "text-align:left" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.APIOPERATION)
+                    </td>
+                    <td>
+                        <a href="#Request_@item.ID" class="text-center" data-toggle="modalDialog" data-target="#Request_@item.REQUEST">Request JSON</a><br />
+                    </td>
+                    <td>
+                        <a href="#Response_@item.ID" class="text-center" data-toggle="modalDialog" data-target="#Response_@item.RESPONSE">Response JSON</a><br />
+                    </td>
+                    <td>
+                        @if (item.LASTMODIFIEDDATE != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.LASTMODIFIEDDATE)<b>-</b> @ViewBag.Time
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.CREATEDDATE)<b>-</b> @ViewBag.Time
+                        }
+                    </td>
+                    <td>
+                        <u>
+                            <a href="~/Service/Edit/@item.ID">Edit</a><br />
+                        </u>
+                        <u>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID, @name = "Delete" }, new { onclick = "return confirm('Do you really want to delete this ID : " + @item.ID + "   ?')" })
+                        </u>
+                    </td>
+                    <td align="center">
+                        <input type='checkbox' name='check'>
+                    </td>
+                </tr>
+                <div id="Request_@item.ID" class="modalDialog" data-target="#Request_@item.ID ">
+                    <div class="modal-header" style="overflow-y: scroll; max-height:50%;  margin-top: 50px; margin-bottom:50px;">
+
+                        <h4 class="modal-title" id="exampleModalLongTitle">Request Data - @item.ID</h4>
+                        <h4 style="text-align:right;"> <a href="#close" title="Close" class="jtable-close-button">Close</a> </h4>
+                        <br />
+                        <div class="modal-body text-right">
+
+                            <br />
+                            <div class="text-left">
+                                @Html.Raw(item.REQUEST)
+                            </div>
+                            <h4> <a href="#close" title="Close" class="jtable-close-button">Close</a> </h4>
+                        </div>
+                    </div>
+                </div>
+                <div id="Response_@item.ID" class="modalDialog" data-target="#Response_@item.ID">
+                    <div class="modal-header" style="overflow-y: scroll; max-height:50%;  margin-top: 50px; margin-bottom:50px;">
+                        <h4 class="modal-title" id="exampleModalLongTitle">Response Data - @item.ID</h4>
+                        <h4 style="text-align:right;"> <a href="#close" title="Close" style="text-align:right;" class="jtable-close-button">Close</a> </h4>
+                        <br />
+                        <div class="modal-body text-right">
+                            <br />
+                            <div class="text-left">
+                                @Html.Raw(item.RESPONSE)
+                            </div>
+                            <h4> <a href="#close" title="Close" class="jtable-close-button">Close</a> </h4>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </table>
+        <br />
+        <div id='Paging' style="text-align:left">
+
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            <div style="text-align:right;">
+                <b style="text-align:right;color:darkgreen;">Records:@Model.Count</b><b style="color:red;"> (@Model.TotalItemCount)</b>
+            </div>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+
+    }
+    else
+    {
+        <br />
+        <br />
+        <table class="table-striped table table-hover table-bordered">
+            <tr>
+                <th style="text-align: left; background-color: green; font-weight: 200; ">
+                    <u> @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:white" })</u>
+                </th>
+                <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                    <u> @Html.ActionLink("Program", "Index", new { sortOrder = ViewBag.Program, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:white" })</u>
+                </th>
+                <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                    <u> @Html.ActionLink("Project", "Index", new { sortOrder = ViewBag.Project, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:white" })</u>
+                </th>
+                <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                    <u>@Html.ActionLink("Release", "Index", new { sortOrder = ViewBag.Release, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:white" })</u>
+                </th>
+                <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                    <u> @Html.ActionLink("Sprint", "Index", new { sortOrder = ViewBag.Sprint, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:white" })</u>
+                </th>
+                <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                    <u> @Html.ActionLink("API Operation", "Index", new { sortOrder = ViewBag.ApiOperation }, new { @style = "color:white" })<u>
+                </th>
+                <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                    Request
+                </th>
+                <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                    Response
+                </th>
+                <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                    <u> @Html.ActionLink("Last Modified On", "Index", new { sortOrder = ViewBag.DateSortParm }, new { @style = "color:white" })</u>
+                </th>
+                <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                    Action
+                </th>
+                <th style=" text-align: left; background-color: green; color: white; font-weight: 200; ">
+                    Check
+                </th>
+            </tr>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="9" style="color:red;">
+                        Now Rows match search criteria
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.ID
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PROGRAM)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PROJECT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RELEASE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SPRINT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.APIOPERATION)
+                        </td>
+                        <td>
+                            <a href="#Request_@item.ID" class="text-center" data-toggle="modalDialog" data-target="#Request_@item.REQUEST">Request JSON</a><br />
+                        </td>
+                        <td>
+                            <a href="#Response_@item.ID" class="text-center" data-toggle="modalDialog" data-target="#Response_@item.RESPONSE">Response JSON</a><br />
+                        </td>
+                        <td>
+                            @if (item.LASTMODIFIEDDATE != null)
+                            {
+                                @Html.DisplayFor(modelItem => item.LASTMODIFIEDDATE)<b>-</b> @ViewBag.Time
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.CREATEDDATE)<b>-</b> @ViewBag.Time
+                            }
+                        </td>
+                        <td>
+                            <u> <a href="~/Service/Details/@item.ID" style="width:68px;">Details</a></u>
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(modelItem => item.IsChek, new { Style = "vertical- align:4px}" })
+                        </td>
+                    </tr>
+                    <div id="Request_@item.ID" class="modalDialog" data-target="#Request_@item.ID ">
+                        <div class="modal-header" style="overflow-y: scroll; max-height:50%;  margin-top: 50px; margin-bottom:50px;">
+                            <h4 class="modal-title" id="exampleModalLongTitle">Request Data - @item.ID</h4>
+                            <h4 style="text-align:right;"> <a href="#close" title="Close" class="jtable-close-button">Close</a> </h4>
+                            <br />
+                            <div class="modal-body text-right">
+                                <br />
+                                <div class="text-left">
+                                    @Html.Raw(item.REQUEST)
+                                </div>
+                                <h4> <a href="#close" title="Close" class="jtable-close-button">Close</a> </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Response_@item.ID" class="modalDialog" data-target="#Response_@item.ID">
+                        <div class="modal-header" style="overflow-y: scroll; max-height:50%;  margin-top: 50px; margin-bottom:50px;">
+                            <h4 class="modal-title" id="exampleModalLongTitle">Response Data - @item.ID</h4>
+                            <h4 style="text-align:right;"> <a href="#close" title="Close" style="text-align:right;" class="jtable-close-button">Close</a> </h4>
+                            <br />
+                            <div class="modal-body text-right">
+                                <br />
+                                <div class="text-left">
+                                    @Html.Raw(item.RESPONSE)
+                                </div>
+                                <h4> <a href="#close" title="Close" class="jtable-close-button">Close</a> </h4>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </table>
+        <br />
+        <div id='Paging' style="text-align:left">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            <div style="text-align:right;">
+                <b style="text-align:right;color:darkgreen;">Records:@Model.Count</b><b style="color:red;"> (@Model.TotalItemCount)</b>
+            </div>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+    }
+}
+
